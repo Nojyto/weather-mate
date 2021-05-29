@@ -143,6 +143,7 @@ header i {
 
 main {
   margin: 96px 0 64px 0;
+  min-height: 800px;
   border-radius: 6px;
   color: #F1F1F1;
   -webkit-box-orient: vertical;
@@ -155,6 +156,7 @@ main #currentWeather {
   padding: 18px 36px 18px 36px;
   font-size: 40px;
   width: 374px;
+  text-align: center;
 }
 
 main #currentWeather h1 {
@@ -163,10 +165,12 @@ main #currentWeather h1 {
 }
 
 main #currentWeather p {
+  float: left;
   position: relative;
   font-size: 18px;
+  width: 100%;
   top: -8px;
-  left: 2px;
+  left: -88px;
 }
 
 main #currentWeather label[for=feelsLikeTemp], main #currentWeather label[for=rainChance] {
@@ -174,14 +178,23 @@ main #currentWeather label[for=feelsLikeTemp], main #currentWeather label[for=ra
   margin-right: 25px;
 }
 
-main #currentWeather label[for=feelsLikeTemp] var {
+main #currentWeather label[for=feelsLikeTemp] var, main #currentWeather label[for=rainChance] var {
   width: 81px;
   text-align: right;
 }
 
-main #currentWeather label[for=rainChance] var {
-  width: 81px;
-  text-align: right;
+main #currentWeather label[for=windAngle] {
+  margin-left: 25px;
+}
+
+main #currentWeather label[for=humidity] .fa-tint {
+  padding-right: 6.25px;
+  padding-left: 6.25px;
+  color: #17E2F2;
+}
+
+main #currentWeather label {
+  float: left;
 }
 
 main #currentWeather img {
@@ -205,6 +218,10 @@ main #currentWeather .fa-wind {
 
 main #currentWeather .fa-glasses {
   color: #F1F1F1;
+}
+
+main #currentWeather .fa-smog {
+  color: #808080;
 }
 
 main #hourlyWeather {

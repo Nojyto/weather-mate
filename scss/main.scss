@@ -1,5 +1,4 @@
 @import "_config.scss";
-@import "_media.scss";
 @import "_utilities.scss";
 
 html {
@@ -24,6 +23,7 @@ header {
 
 main {
     margin: 96px 0 64px 0;
+    min-height: 800px;
     border-radius: 6px;
     color: $white;
     
@@ -34,32 +34,40 @@ main {
         padding: 18px 36px 18px 36px;
         font-size: 40px;
         width: 374px;
+        text-align: center;
         h1{
             font-size: 45px;
             font-weight: 300px;
         }
         p{
+            float: left;
             position: relative;
             font-size: 18px;
+            width: 100%;
             top: -8px;
-            left: 2px;
+            left: -88px;
         }
         label[for=feelsLikeTemp], label[for=rainChance]{
             @extend .flexContainer;
             float: left;
             margin-right: 25px;
-        }
-        label[for=feelsLikeTemp]{
             var{
                 width: 81px;
                 text-align: right;
             }
         }
-        label[for=rainChance]{
-            var{
-                width: 81px;
-                text-align: right;
+        label[for=windAngle]{
+            margin-left: 25px;
+        }
+        label[for=humidity]{
+            .fa-tint   {
+                padding-right: 6.25px;
+                padding-left: 6.25px;
+                color: #17E2F2;
             }
+        }
+        label{
+            float: left;
         }
         img{
             position: relative;
@@ -74,6 +82,7 @@ main {
         .fa-sun    {color: #FDB813;}
         .fa-wind   {color: #BFBEB9;}
         .fa-glasses{color: $white;}
+        .fa-smog   {color: $grey;}
     }
     #hourlyWeather{
         @extend .flexContainer;
