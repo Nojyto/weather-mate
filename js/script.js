@@ -104,7 +104,7 @@ window.onload = async () => {
             <div>  
                 <label for="weekday">${(i == 1) ? "Tomorrow" : getCurWeekday(d.getDay() + i - 1)}</label>
                 <img src=${ICON_URL(data.daily[i].weather[0].icon)} alt="weatherIcon"></img>
-                <label for="temp">${parseInt(data.daily[i].feels_like.day)}°</label>
+                <label for="temp">${parseInt(data.daily[i].temp.max)}°/ ${parseInt(data.daily[i].temp.min)}°</label>
                 <label for="rain"><i class="fas fa-tint"></i>${data.daily[i].pop * 100}%</label>
             </div>
         `

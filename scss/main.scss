@@ -93,6 +93,11 @@ main {
             float: left;
             width: 79px;
         }
+        label[for=temp], label[for=rain]{
+            @extend .flexContainer;
+            width: 80px;
+            height: 24px;
+        }
         img{
             width: 60px;
             height: 60px;

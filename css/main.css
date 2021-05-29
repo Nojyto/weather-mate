@@ -39,7 +39,7 @@
   background: #292929;
 }
 
-.flexContainer, main, main #hourlyWeather, main #hourlyWeather div, main #dailyWeather div, footer {
+.flexContainer, main, main #hourlyWeather, main #hourlyWeather div, main #dailyWeather div, main #dailyWeather label[for=temp], main #dailyWeather label[for=rain], footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -239,6 +239,11 @@ main #dailyWeather div {
 main #dailyWeather label[for=weekday] {
   float: left;
   width: 79px;
+}
+
+main #dailyWeather label[for=temp], main #dailyWeather label[for=rain] {
+  width: 80px;
+  height: 24px;
 }
 
 main #dailyWeather img {
