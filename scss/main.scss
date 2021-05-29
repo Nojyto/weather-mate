@@ -40,12 +40,11 @@ main {
             font-weight: 300px;
         }
         p{
-            float: left;
             position: relative;
             font-size: 18px;
-            width: 100%;
+            text-align: left;
             top: -8px;
-            left: -88px;
+            left: 8px;
         }
         label[for=feelsLikeTemp], label[for=rainChance]{
             @extend .flexContainer;
@@ -113,7 +112,7 @@ main {
             @extend .flexContainer;
             flex-flow: column wrap;
             justify-content: center;
-            margin-bottom: 16px;
+            margin-bottom: 17px;
             border-radius: 6px;
             background-color: $black;
             height: 60px;

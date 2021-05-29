@@ -18,8 +18,9 @@ function getCurWeekday(day){
 
 function getCurDate(){
     const weekday = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur"]
+    const months  = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
     const d = new Date()
-    return `${weekday[d.getDay()]}, ${d.getMonth() + 1}/${d.getDate()} ${d.getHours()}:${(d.getMinutes() < 10) ? "0" + d.getMinutes() : d.getMinutes()}`
+    return `${weekday[d.getDay()]}, ${months[d.getMonth() + 1]} ${d.getDate()} ${d.getHours()}:${(d.getMinutes() < 10) ? "0" + d.getMinutes() : d.getMinutes()}`
 }
 
 function getSunToggleTime(epoch){

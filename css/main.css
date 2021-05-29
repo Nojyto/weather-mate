@@ -165,12 +165,11 @@ main #currentWeather h1 {
 }
 
 main #currentWeather p {
-  float: left;
   position: relative;
   font-size: 18px;
-  width: 100%;
+  text-align: left;
   top: -8px;
-  left: -88px;
+  left: 8px;
 }
 
 main #currentWeather label[for=feelsLikeTemp], main #currentWeather label[for=rainChance] {
@@ -263,7 +262,7 @@ main #dailyWeather div {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 17px;
   border-radius: 6px;
   background-color: #1B1B1B;
   height: 60px;
