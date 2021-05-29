@@ -1,0 +1,262 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Titillium Web", sans-serif;
+  /*noselect*/
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #292929;
+  -webkit-box-shadow: inset 0 0 2px #000000;
+          box-shadow: inset 0 0 2px #000000;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #F1F1F1;
+  border-radius: 6px;
+}
+
+::-moz-selection, ::-moz-selection {
+  color: #F1F1F1;
+  background: #292929;
+}
+
+::selection, ::-moz-selection {
+  color: #F1F1F1;
+  background: #292929;
+}
+
+.flexContainer, main, main #hourlyWeather, main #hourlyWeather div, main #dailyWeather div, footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.headerfooter, header, footer {
+  width: 100%;
+  height: 64px;
+  background-color: #1B1B1B;
+  -webkit-box-shadow: 0 0 15px #000000;
+          box-shadow: 0 0 15px #000000;
+}
+
+.component, main #currentWeather, main #hourlyWeather div, main #dailyWeather div {
+  -webkit-box-shadow: 0 0 15px #000000;
+          box-shadow: 0 0 15px #000000;
+  background-color: #1B1B1B;
+}
+
+a.button {
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #F1F1F1;
+  margin-right: 8px;
+  border-radius: 0.12em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 300;
+  color: #F1F1F1;
+  text-align: center;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+a.button:hover {
+  color: #1B1B1B;
+  background-color: #F1F1F1;
+}
+
+/*.tooltip {
+    @extend p;
+    position: relative;
+    display: inline-block;
+    .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: $grey;
+        color:$white;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: $grey transparent transparent transparent;
+        }
+    }
+    &:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+}*/
+html {
+  background-color: #292929;
+  scroll-behavior: smooth;
+}
+
+header {
+  opacity: 98.5%;
+  top: 0;
+  position: fixed;
+  z-index: 100;
+}
+
+header i {
+  color: #F1F1F1;
+  padding: 8px;
+  margin-left: 6px;
+  margin-right: 6px;
+  margin-top: 1px;
+}
+
+main {
+  margin: 96px 0 64px 0;
+  border-radius: 6px;
+  color: #F1F1F1;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+}
+
+main #currentWeather {
+  padding: 18px 36px 18px 36px;
+  font-size: 40px;
+  width: 374px;
+}
+
+main #currentWeather h1 {
+  font-size: 45px;
+  font-weight: 300px;
+}
+
+main #currentWeather p {
+  position: relative;
+  font-size: 18px;
+  top: -8px;
+  left: 2px;
+}
+
+main #currentWeather img {
+  position: relative;
+  top: 10px;
+  right: 7px;
+}
+
+main #currentWeather .fa-tint {
+  color: #305EBE;
+}
+
+main #currentWeather .fa-sun {
+  color: #FDB813;
+}
+
+main #currentWeather .fa-wind {
+  color: #BFBEB9;
+}
+
+main #currentWeather .fa-glasses {
+  color: #F1F1F1;
+}
+
+main #hourlyWeather {
+  margin-top: 24px;
+  width: 374px;
+}
+
+main #hourlyWeather div {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 6px;
+  background-color: #1B1B1B;
+  color: #F1F1F1;
+  width: 80px;
+  height: 135px;
+}
+
+main #hourlyWeather .fa-tint {
+  color: #305EBE;
+  margin: 2px;
+}
+
+main #dailyWeather {
+  margin-top: 24px;
+  width: 374px;
+}
+
+main #dailyWeather div {
+  width: 374px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  background-color: #1B1B1B;
+  height: 60px;
+}
+
+main #dailyWeather label[for=weekday] {
+  float: left;
+  width: 79px;
+}
+
+main #dailyWeather img {
+  width: 60px;
+  height: 60px;
+}
+
+main #dailyWeather .fa-tint {
+  color: #305EBE;
+  margin: 2px;
+}
+
+footer {
+  bottom: 0;
+}
+
+footer p {
+  font-size: 16px;
+  color: #F1F1F1;
+}
+/*# sourceMappingURL=main.css.map */

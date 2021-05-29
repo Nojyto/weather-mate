@@ -1,0 +1,115 @@
+@import "_config.scss";
+@import "_media.scss";
+@import "_utilities.scss";
+
+html {
+    background-color: $darkgrey;
+    scroll-behavior: smooth;
+}
+
+header {
+    @extend .headerfooter;
+    opacity: 98.5%;
+    top: 0;
+    position: fixed;
+    z-index: 100;
+    i{
+        color: $white;
+        padding: 8px;
+        margin-left: 6px;
+        margin-right: 6px;
+        margin-top: 1px;
+    }
+}
+
+main {
+    margin: 96px 0 64px 0;
+    border-radius: 6px;
+    color: $white;
+    
+    @extend .flexContainer;
+    flex-flow: column wrap;
+    #currentWeather{
+        @extend .component;
+        padding: 18px 36px 18px 36px;
+        font-size: 40px;
+        width: 374px;
+        h1{
+            font-size: 45px;
+            font-weight: 300px;
+        }
+        p{
+            position: relative;
+            font-size: 18px;
+            top: -8px;
+            left: 2px;
+        }
+        img{
+            position: relative;
+            
+            top: 10px;
+            right: 7px;
+        }
+        .fa-tint   {color: #305EBE;}
+        .fa-sun    {color: #FDB813;}
+        .fa-wind   {color: #BFBEB9;}
+        .fa-glasses{color: $white;}
+    }
+    #hourlyWeather{
+        @extend .flexContainer;
+        margin-top: 24px;
+        width: 374px;
+        div{
+            @extend .component;
+            @extend .flexContainer;
+            flex-flow: column wrap;
+            justify-content: center;
+            border-radius: 6px;
+            background-color: $black;
+            color: $white;
+            width: 80px;
+            height: 135px;
+        }
+        .fa-tint{
+            color: #305EBE;
+            margin: 2px;
+        }
+    }
+    #dailyWeather{
+        margin-top: 24px;
+        width: 374px;
+        div{
+            width: 374px;
+            @extend .component;
+            @extend .flexContainer;
+            flex-flow: column wrap;
+            justify-content: center;
+            margin-bottom: 16px;
+            border-radius: 6px;
+            background-color: $black;
+            height: 60px;
+        }
+        label[for=weekday]{
+            float: left;
+            width: 79px;
+        }
+        img{
+            width: 60px;
+            height: 60px;
+        }
+        .fa-tint{
+            color: #305EBE;
+            margin: 2px;
+        }
+    }
+}
+
+footer {
+    @extend .headerfooter;
+    @extend .flexContainer;
+    bottom: 0;
+    p{
+        font-size: 16px;
+        color: $white;
+    }
+}
