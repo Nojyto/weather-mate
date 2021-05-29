@@ -6,7 +6,7 @@ let geoData             = {}
 
 const WEATHER_API_KEY   = "7fd94e220617fedef7ce908432bba472"
 const WEATHER_API_URL   = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=metric&appid=${WEATHER_API_KEY}`
-const POLLUTION_API_URL = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`
+const POLLUTION_API_URL = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`
 const WEATHER_ICON_URL  = (ico) => "https://openweathermap.org/img/wn/" + ico + ".png"
 let pollutionData       = {}
 let weatherData         = {}
@@ -155,7 +155,7 @@ window.onload = async () => {
         weatherData   = await(await fetch(WEATHER_API_URL)).json()
         pollutionData = await(await fetch(POLLUTION_API_URL)).json()
     }catch(err){console.error(err)}
-    console.log(weatherData)
+    //console.log(weatherData)
     //console.log(pollutionData)
 
     addCurrWeather();
