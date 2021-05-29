@@ -39,7 +39,7 @@
   background: #292929;
 }
 
-.flexContainer, main, main #hourlyWeather, main #hourlyWeather div, main #dailyWeather div, main #dailyWeather label[for=temp], main #dailyWeather label[for=rain], footer {
+.flexContainer, main, main #currentWeather label[for=feelsLikeTemp], main #currentWeather label[for=rainChance], main #hourlyWeather, main #hourlyWeather div, main #dailyWeather div, main #dailyWeather label[for=temp], main #dailyWeather label[for=rain], footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -169,13 +169,29 @@ main #currentWeather p {
   left: 2px;
 }
 
+main #currentWeather label[for=feelsLikeTemp], main #currentWeather label[for=rainChance] {
+  float: left;
+  margin-right: 25px;
+}
+
+main #currentWeather label[for=feelsLikeTemp] var {
+  width: 81px;
+  text-align: right;
+}
+
+main #currentWeather label[for=rainChance] var {
+  width: 81px;
+  text-align: right;
+}
+
 main #currentWeather img {
   position: relative;
-  top: 10px;
-  right: 7px;
+  right: 5px;
 }
 
 main #currentWeather .fa-tint {
+  padding-right: 6.25px;
+  padding-left: 6.25px;
   color: #305EBE;
 }
 

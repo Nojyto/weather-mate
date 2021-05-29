@@ -44,13 +44,33 @@ main {
             top: -8px;
             left: 2px;
         }
+        label[for=feelsLikeTemp], label[for=rainChance]{
+            @extend .flexContainer;
+            float: left;
+            margin-right: 25px;
+        }
+        label[for=feelsLikeTemp]{
+            var{
+                width: 81px;
+                text-align: right;
+            }
+        }
+        label[for=rainChance]{
+            var{
+                width: 81px;
+                text-align: right;
+            }
+        }
         img{
             position: relative;
-            
-            top: 10px;
-            right: 7px;
+            //top: 10px;
+            right: 5px;
         }
-        .fa-tint   {color: #305EBE;}
+        .fa-tint   {
+            padding-right: 6.25px;
+            padding-left: 6.25px;
+            color: #305EBE;
+        }
         .fa-sun    {color: #FDB813;}
         .fa-wind   {color: #BFBEB9;}
         .fa-glasses{color: $white;}

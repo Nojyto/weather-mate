@@ -1,7 +1,7 @@
 const lat      = 55.166080530703354, lon = 24.417680224680666
 const API_KEY  = "7fd94e220617fedef7ce908432bba472"
 const API_URL  = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=metric&appid=${API_KEY}`
-const ICON_URL = (ico) => "http://openweathermap.org/img/wn/" + ico + ".png"
+const ICON_URL = (ico) => "https://openweathermap.org/img/wn/" + ico + ".png"
 
 let data = {}
 
@@ -39,7 +39,7 @@ window.onload = async () => {
     try{
         data = await(await fetch(API_URL)).json()
     }catch(err){console.error(err)}
-    console.log(data)
+    //console.log(data)
 
     document.getElementById("currentWeather").innerHTML = `
         <div>
@@ -47,7 +47,7 @@ window.onload = async () => {
             <p>${getCurDate()}</p>
         </div>
 
-        <div>
+        <div class="mainInfo">
             <label for="feelsLikeTemp">
                 <img src=${ICON_URL(data.current.weather[0].icon)} alt="weatherIcon"></img>
                 <var>${parseInt(data.current.feels_like)}°</var>
@@ -68,7 +68,7 @@ window.onload = async () => {
         <div>
             <label for="sunTime">
                 <i class="fas fa-sun"></i>
-                <var>${getSunToggleTime(data.current.sunrise)}-${getSunToggleTime(data.current.sunset)}</var>
+                <var>${getSunToggleTime(data.current.sunrise)} - ${getSunToggleTime(data.current.sunset)}</var>
             </label>
         </div>
 
@@ -80,10 +80,8 @@ window.onload = async () => {
         </div>
     `
 
-
     hourlyWeather = document.getElementById("hourlyWeather")
     d = new Date()
-
     for(let i = 1; i <= 4; i++){
         d.setHours(d.getHours() + 1);
         hourlyWeather.innerHTML += `
@@ -98,7 +96,6 @@ window.onload = async () => {
 
 
     dailyWeather = document.getElementById("dailyWeather")
-
     for(let i = 1; i <= 6; i++){
         dailyWeather.innerHTML += `
             <div>  
