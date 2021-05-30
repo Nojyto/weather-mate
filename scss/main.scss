@@ -26,13 +26,13 @@ main {
     margin: 0 0 64px 0;
     min-height: 800px;
     color: $white;
-    
+
     @extend .flexContainer;
     flex-flow: column wrap;
     #currentWeather{
         @extend .component;
         margin-top: 96px;
-        padding: 18px 36px 18px 36px;
+        padding: 18px 34px;
         border-radius: 6px;
         width: 374px;
         text-align: center;
@@ -72,7 +72,7 @@ main {
     }
     #currentInfo{
         @extend .component;
-        padding: 18px 36px 18px 36px;
+        padding: 18px 34px;
         border-radius: 6px;
         font-size: 38px;
         width: 374px;
@@ -83,7 +83,11 @@ main {
             height: 61px;
         }
         label{
+            @extend .tooltip;
             float: left;
+            span{
+                @extend .tooltiptext;
+            }
         }
         var{
             float: right;
@@ -143,10 +147,22 @@ main {
         label[for=rain]{
             color: $grey;
         }
+        samp{
+            height: 50px;
+            @extend .tooltip;
+            span{
+                
+                @extend .tooltiptext;
+            }
+        }
     }
     #dailyWeather{
         margin-top: 24px;
         width: 374px;
+        label{
+            text-align: justify;
+            position: relative;
+        }
         div{
             width: 374px;
             @extend .component;
@@ -162,6 +178,7 @@ main {
             float: left;
             width: 79px;
             font-size: 18px;
+            //margin: 16.5px 0px 16.5px 0px;
         }
         label[for=temp], label[for=rain]{
             @extend .flexContainer;
@@ -174,10 +191,18 @@ main {
         img{
             width: 60px;
             height: 60px;
+            //margin: 0 30px 0 30px;
         }
         .fa-tint{
             color: #305EBE;
             margin: 2px;
+        }
+        samp{
+            height: 60px;
+            @extend .tooltip;
+            span{
+                @extend .tooltiptext;
+            }
         }
     }
 }

@@ -86,6 +86,47 @@ a.button:hover {
   background-color: #F1F1F1;
 }
 
+.tooltip, main #currentInfo label, main #hourlyWeather samp, main #dailyWeather samp {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext, main #currentInfo label .tooltiptext, main #hourlyWeather samp .tooltiptext, main #dailyWeather samp .tooltiptext, main #currentInfo label span, main #hourlyWeather samp span, main #dailyWeather samp span {
+  font-size: 16px;
+  font-weight: 300;
+  visibility: hidden;
+  width: 100px;
+  background-color: #F1F1F1;
+  color: #1B1B1B;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 120%;
+  left: 70%;
+  margin-left: -60px;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after, main #currentInfo label .tooltiptext::after, main #hourlyWeather samp .tooltiptext::after, main #dailyWeather samp .tooltiptext::after, main #currentInfo label span::after, main #hourlyWeather samp span::after, main #dailyWeather samp span::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #F1F1F1 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext, main #currentInfo label:hover .tooltiptext, main #hourlyWeather samp:hover .tooltiptext, main #dailyWeather samp:hover .tooltiptext, .tooltip:hover main #currentInfo label span, main #currentInfo label .tooltip:hover span, main #currentInfo label:hover span, .tooltip:hover main #hourlyWeather samp span, main #hourlyWeather samp .tooltip:hover span, main #hourlyWeather samp:hover span, .tooltip:hover main #dailyWeather samp span, main #dailyWeather samp .tooltip:hover span, main #dailyWeather samp:hover span {
+  visibility: visible;
+  opacity: 1;
+}
+
 html {
   background-color: #292929;
   scroll-behavior: smooth;
@@ -119,7 +160,7 @@ main {
 
 main #currentWeather {
   margin-top: 96px;
-  padding: 18px 36px 18px 36px;
+  padding: 18px 34px;
   border-radius: 6px;
   width: 374px;
   text-align: center;
@@ -163,7 +204,7 @@ main #currentWeather span {
 }
 
 main #currentInfo {
-  padding: 18px 36px 18px 36px;
+  padding: 18px 34px;
   border-radius: 6px;
   font-size: 38px;
   width: 374px;
@@ -257,9 +298,18 @@ main #hourlyWeather label[for=rain] {
   color: #808080;
 }
 
+main #hourlyWeather samp {
+  height: 50px;
+}
+
 main #dailyWeather {
   margin-top: 24px;
   width: 374px;
+}
+
+main #dailyWeather label {
+  text-align: justify;
+  position: relative;
 }
 
 main #dailyWeather div {
@@ -300,6 +350,10 @@ main #dailyWeather img {
 main #dailyWeather .fa-tint {
   color: #305EBE;
   margin: 2px;
+}
+
+main #dailyWeather samp {
+  height: 60px;
 }
 
 footer {

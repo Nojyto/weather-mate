@@ -37,6 +37,26 @@ function addCurrWeather(){
     `
 }
 
+function addHourlyWeather(){
+    hourlyWeather = document.getElementById("hourlyWeather")
+    d = new Date()
+    if(d.getMinutes() > 40) d.setTime(d.getTime() + (60*60*1000))
+    for(let i = 1; i <= 4; i++){
+        d.setHours(d.getHours() + 1);
+        hourlyWeather.innerHTML += `
+            <div style="${(i == 4) ? "margin-right: 0px" : "margin-right: 18px"}">  
+                <label for="time">${d.getHours()}:00</label>
+                <samp>
+                    <img src=${WEATHER_ICON_URL(weatherData.hourly[i].weather[0].icon)} alt="weatherIcon" draggable="false"></img>
+                    <span>${weatherData.hourly[i].weather[0].description.charAt(0).toUpperCase() + weatherData.hourly[i].weather[0].description.slice(1)}</span>
+                </samp>
+                <label for="temp">${parseInt(weatherData.hourly[i].feels_like)}°</label>
+                <label for="rain"><i class="fas fa-tint"></i>${weatherData.hourly[i].pop * 100}%</label>
+            </div>
+        `
+    }
+}
+
 function addCurrInfo(){
     const getAQI = (AQI) => {
         if(50 >= AQI){
@@ -75,47 +95,30 @@ function addCurrInfo(){
 
     document.getElementById("currentInfo").innerHTML = `
         <div>
-            <label><i class="fas fa-wind"></i></label>
+            <label><i class="fas fa-wind"></i><span>Wind dir/speed</span></label>
             <var><i style="transform: rotate(${weatherData.current.wind_deg}deg)" class="fas fa-arrow-up"></i>${parseInt(weatherData.current.wind_speed)} m/s</var>
         </div>
 
         <div>
-            <label for="humidity"><i class="fas fa-tint"></i></label>
+            <label for="humidity"><i class="fas fa-tint"></i><span>Humidity</span></label>
             <var>${weatherData.current.humidity}%</var>
         </div>
 
         <div>
-            <label for="pollution"><i class="fas fa-smog"></i></label>
+            <label for="pollution"><i class="fas fa-smog"></i><span>AQI</span></label>
             <var>${getAQI(pollutionData.list[0].main.aqi)}</var>
         </div>
 
         <div>
-            <label for="sunTime"><i class="fas fa-sun"></i></label>
+            <label for="sunTime"><i class="fas fa-sun"></i><span>Sun rise/set</span></label>
             <var>${getSunToggleTime(weatherData.current.sunrise)} - ${getSunToggleTime(weatherData.current.sunset)}</var>
         </div>
 
         <div>
-            <label for="UV-index"><i class="fas fa-glasses"></i></label>
+            <label for="UV-index"><i class="fas fa-glasses"></i><span>UV index</span></label>
             <var>${getUVindex(weatherData.current.uvi)}</var>
         </div>
     `
-}
-
-function addHourlyWeather(){
-    hourlyWeather = document.getElementById("hourlyWeather")
-    d = new Date()
-    if(d.getMinutes() > 40) d.setTime(d.getTime() + (60*60*1000))
-    for(let i = 1; i <= 4; i++){
-        d.setHours(d.getHours() + 1);
-        hourlyWeather.innerHTML += `
-            <div style="${(i == 4) ? "margin-right: 0px" : "margin-right: 18px"}">  
-                <label for="time">${d.getHours()}:00</label>
-                <img src=${WEATHER_ICON_URL(weatherData.hourly[i].weather[0].icon)} alt="weatherIcon" draggable="false"></img>
-                <label for="temp">${parseInt(weatherData.hourly[i].feels_like)}°</label>
-                <label for="rain"><i class="fas fa-tint"></i>${weatherData.hourly[i].pop * 100}%</label>
-            </div>
-        `
-    }
 }
 
 function addDailyWeather(){
@@ -126,7 +129,11 @@ function addDailyWeather(){
         dailyWeather.innerHTML += `
             <div>  
                 <label for="weekday">${(i == 1) ? "Tomorrow" : d.toLocaleString("default", {weekday:"long"})}</label>
-                <img src=${WEATHER_ICON_URL(weatherData.daily[i].weather[0].icon)} alt="weatherIcon" draggable="false"></img>
+                
+                <samp>
+                    <img src=${WEATHER_ICON_URL(weatherData.daily[i].weather[0].icon)} alt="weatherIcon" draggable="false"></img>
+                    <span>${weatherData.daily[i].weather[0].description.charAt(0).toUpperCase() + weatherData.daily[i].weather[0].description.slice(1)}</span>
+                </samp>
                 <label for="temp">${parseInt(weatherData.daily[i].temp.max)}°/ ${parseInt(weatherData.daily[i].temp.min)}°</label>
                 <label for="rain"><i class="fas fa-tint"></i>${weatherData.daily[i].pop * 100}%</label>
             </div>
@@ -145,8 +152,8 @@ window.onload = async () => {
         weatherData   = await(await fetch(WEATHER_API_URL)).json()
         pollutionData = await(await fetch(POLLUTION_API_URL)).json()
     }catch(err){console.error(err)}
-    console.log(weatherData)
-    //console.log(pollutionData)
+    //console.log(weatherData)
+    console.log(pollutionData)
 
     addCurrWeather();
     addHourlyWeather();
