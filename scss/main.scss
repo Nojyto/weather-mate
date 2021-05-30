@@ -7,6 +7,8 @@ html {
 }
 
 header {
+    @extend .flexContainer;
+    justify-content: left;
     @extend .headerfooter;
     opacity: 98.5%;
     top: 0;
@@ -39,13 +41,14 @@ main {
         h1{
             font-size: 45px;
             font-weight: 300px;
+            text-align: left;
         }
         p{
             position: relative;
             font-size: 18px;
             text-align: left;
             top: -9px;
-            left: 8px;
+            left: 2px;
             color: $grey;
         }
         img{
@@ -123,7 +126,10 @@ main {
     }
     #hourlyWeather{
         @extend .flexContainer;
-        margin-top: 24px;
+
+        overflow: auto;
+        position: relative;
+        white-space: nowrap;
         width: 374px;
         div{
             @extend .component;
@@ -132,6 +138,9 @@ main {
             justify-content: center;
             border-radius: 6px;
             background-color: $black;
+            margin-top: 24px;
+            margin-bottom: 8px;
+            margin-left: 18px;
             color: $white;
             width: 80px;
             height: 135px;
@@ -147,11 +156,13 @@ main {
         label[for=rain]{
             color: $grey;
         }
+        img{
+            padding: 0 15px 0 15px;
+        }
         samp{
             height: 50px;
             @extend .tooltip;
             span{
-                
                 @extend .tooltiptext;
             }
         }

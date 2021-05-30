@@ -15,6 +15,7 @@
 
 ::-webkit-scrollbar {
   width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
@@ -29,17 +30,7 @@
   border-radius: 6px;
 }
 
-::-moz-selection, ::-moz-selection {
-  color: #F1F1F1;
-  background: #292929;
-}
-
-::selection, ::-moz-selection {
-  color: #F1F1F1;
-  background: #292929;
-}
-
-.flexContainer, main, main #currentInfo label[for=feelsLikeTemp], main #hourlyWeather, main #hourlyWeather div, main #dailyWeather div, main #dailyWeather label[for=temp], main #dailyWeather label[for=rain], footer {
+.flexContainer, header, main, main #currentInfo label[for=feelsLikeTemp], main #hourlyWeather, main #hourlyWeather div, main #dailyWeather div, main #dailyWeather label[for=temp], main #dailyWeather label[for=rain], footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -69,7 +60,7 @@ a.button {
   display: inline-block;
   padding: 0.35em 1.2em;
   border: 0.1em solid #F1F1F1;
-  margin-right: 8px;
+  margin: 8px 12.81px;
   border-radius: 0.12em;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -133,6 +124,9 @@ html {
 }
 
 header {
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
   opacity: 98.5%;
   top: 0;
   position: fixed;
@@ -169,6 +163,7 @@ main #currentWeather {
 main #currentWeather h1 {
   font-size: 45px;
   font-weight: 300px;
+  text-align: left;
 }
 
 main #currentWeather p {
@@ -176,7 +171,7 @@ main #currentWeather p {
   font-size: 18px;
   text-align: left;
   top: -9px;
-  left: 8px;
+  left: 2px;
   color: #808080;
 }
 
@@ -265,7 +260,9 @@ main #currentInfo .fa-smog {
 }
 
 main #hourlyWeather {
-  margin-top: 24px;
+  overflow: auto;
+  position: relative;
+  white-space: nowrap;
   width: 374px;
 }
 
@@ -279,6 +276,9 @@ main #hourlyWeather div {
           justify-content: center;
   border-radius: 6px;
   background-color: #1B1B1B;
+  margin-top: 24px;
+  margin-bottom: 8px;
+  margin-left: 18px;
   color: #F1F1F1;
   width: 80px;
   height: 135px;
@@ -296,6 +296,10 @@ main #hourlyWeather label {
 
 main #hourlyWeather label[for=rain] {
   color: #808080;
+}
+
+main #hourlyWeather img {
+  padding: 0 15px 0 15px;
 }
 
 main #hourlyWeather samp {

@@ -26,6 +26,7 @@ $yellow:    #FF9900;
 
 ::-webkit-scrollbar {
     width: 7px;
+    height: 7px;
 }
 
 ::-webkit-scrollbar-track {
@@ -37,9 +38,4 @@ $yellow:    #FF9900;
 ::-webkit-scrollbar-thumb {
     background-color: $white;
     border-radius: 6px;
-}
-
-::selection, ::-moz-selection {
-    color: $white;
-    background: $darkgrey;
 }

@@ -1,13 +1,13 @@
-const lat      = 55.166080530703354, lon = 24.417680224680666
-
-const GEO_API_KEY       = "AIzaSyDS5Ba4yckNhLgc3b_yujY9HkwwjYgzhX4"
-const GEO_API_URL       = (query) => `https://maps.googleapis.com/maps/api/geocode/json?address=${query}&key=${GEO_API_KEY}`
-let geoData             = {}
+let lat                 = localStorage.getItem("lat")
+let lon                 = localStorage.getItem("lon")
+let city                = localStorage.getItem("city");
 
 const WEATHER_API_KEY   = "7fd94e220617fedef7ce908432bba472"
 const WEATHER_API_URL   = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=metric&appid=${WEATHER_API_KEY}`
 const POLLUTION_API_URL = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`
 const WEATHER_ICON_URL  = (ico) => "https://openweathermap.org/img/wn/" + ico + ".png"
+const GEO_API_URL       = (query) => `https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?f=pjson&maxLocations=1&city=${query}`
+let geoData             = {}
 let pollutionData       = {}
 let weatherData         = {}
 
@@ -21,7 +21,7 @@ function addCurrWeather(){
 
     document.getElementById("currentWeather").innerHTML = `
         <div>
-            <h1>${weatherData.timezone}</h1>
+            <h1>${city}</h1>
             <p>${getCurDate()}</p>
         </div>
 
@@ -41,10 +41,10 @@ function addHourlyWeather(){
     hourlyWeather = document.getElementById("hourlyWeather")
     d = new Date()
     if(d.getMinutes() > 40) d.setTime(d.getTime() + (60*60*1000))
-    for(let i = 1; i <= 4; i++){
+    for(let i = 1; i <= 12; i++){
         d.setHours(d.getHours() + 1);
         hourlyWeather.innerHTML += `
-            <div style="${(i == 4) ? "margin-right: 0px" : "margin-right: 18px"}">  
+            <div style="${(i == 1) ? "margin-left: 790px" : "margin-left: 18px"}">  
                 <label for="time">${d.getHours()}:00</label>
                 <samp>
                     <img src=${WEATHER_ICON_URL(weatherData.hourly[i].weather[0].icon)} alt="weatherIcon" draggable="false"></img>
@@ -143,17 +143,38 @@ function addDailyWeather(){
 }
 
 window.onload = async () => {
-    /*try{
-        geoData = await(await fetch(GEO_API_URL("marijampole"))).json()
-        //geoData = await(await fetch("https://maps.googleapis.com/maps/api/geocode/json?place_id=ChIJd8BlQ2BZwokRAFUEcm_qrcA&key=AIzaSyDia73QDHsV7N8StWtd0g2WoszWS8Ru1Ic&sensor=true")).json()
-    }catch(err){console.error(err)}
-    console.log(geoData)*/
+    document.getElementById("changeLocation").addEventListener("click", () => {
+        localStorage.city = null
+        localStorage.lat  = null
+        localStorage.lon  = null
+        location.reload()
+    })
     try{
+        if(city == null || city == "null" || lat == null || lat == "null" || lon == "null" || lon == null){
+            city = window.prompt("Enter your city: ")
+            localStorage.city = city
+
+            geoData = await(await fetch(GEO_API_URL(city))).json()
+            if(geoData.candidates.length == 0){
+                window.alert("Invalid city name.")
+                location.reload()
+            }
+
+            lat = geoData.candidates[0].location.y
+            localStorage.lat = lat
+            
+            lon = geoData.candidates[0].location.x
+            localStorage.lon = lon
+
+            //console.log(geoData)
+            location.reload()
+        }
         weatherData   = await(await fetch(WEATHER_API_URL)).json()
         pollutionData = await(await fetch(POLLUTION_API_URL)).json()
     }catch(err){console.error(err)}
+    
     //console.log(weatherData)
-    console.log(pollutionData)
+    //console.log(pollutionData)
 
     addCurrWeather();
     addHourlyWeather();
