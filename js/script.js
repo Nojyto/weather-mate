@@ -2,11 +2,11 @@ let lat                 = localStorage.getItem("lat")
 let lon                 = localStorage.getItem("lon")
 let city                = localStorage.getItem("city");
 
-const WEATHER_API_KEY   = "7fd94e220617fedef7ce908432bba472"
-const WEATHER_API_URL   = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=metric&appid=${WEATHER_API_KEY}`
-const POLLUTION_API_URL = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`
+const OPENWEATHER_API_KEY   = "7fd94e220617fedef7ce908432bba472"
+const WEATHER_API_URL   = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=metric&appid=${OPENWEATHER_API_KEY}`
+const POLLUTION_API_URL = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_API_KEY}`
 const WEATHER_ICON_URL  = (ico) => "https://openweathermap.org/img/wn/" + ico + ".png"
-const GEO_API_URL       = (query) => `https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?f=pjson&maxLocations=1&city=${query}`
+const GEO_API_URL       = (query) => `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=1&appid=${OPENWEATHER_API_KEY}`
 let geoData             = {}
 let pollutionData       = {}
 let weatherData         = {}
@@ -59,18 +59,12 @@ function addHourlyWeather(){
 
 function addCurrInfo(){
     const getAQI = (AQI) => {
-        if(50 >= AQI){
-            return `Good(${AQI})`
-        }else if(100 >= AQI){
-            return `Moderate(${AQI})`
-        }else if(150 >= AQI){
-            return `Tolerable(${AQI})`
-        }else if(200 >= AQI){
-            return `Bad(${AQI})`
-        }else if(250 >= AQI){
-            return `Horrible(${AQI})`
-        }else if(300 >= AQI){
-            return `Hazardous(${AQI})`
+        switch(AQI){
+            case 5: return "Very Poor"
+            case 4: return "Poor"
+            case 3: return "Moderate"
+            case 2: return "Fair"
+            case 1: return "Good"
         }
     }
 
@@ -128,14 +122,13 @@ function addDailyWeather(){
     for(let i = 1; i <= 6; i++){
         dailyWeather.innerHTML += `
             <div>  
-                <label for="weekday">${(i == 1) ? "Tomorrow" : d.toLocaleString("default", {weekday:"long"})}</label>
-                
+                <label for="weekday">${(i == 1) ? "Tomorrow" : d.toLocaleString("EN", {weekday:"long"})}</label>
                 <samp>
                     <img src=${WEATHER_ICON_URL(weatherData.daily[i].weather[0].icon)} alt="weatherIcon" draggable="false"></img>
                     <span>${weatherData.daily[i].weather[0].description.charAt(0).toUpperCase() + weatherData.daily[i].weather[0].description.slice(1)}</span>
                 </samp>
                 <label for="temp">${parseInt(weatherData.daily[i].temp.max)}°/ ${parseInt(weatherData.daily[i].temp.min)}°</label>
-                <label for="rain"><i class="fas fa-tint"></i>${weatherData.daily[i].pop * 100}%</label>
+                <label for="rain"><i class="fas fa-tint"></i>${parseInt(weatherData.daily[i].pop * 100)}%</label>
             </div>
         `
         d.setDate(d.getDate() + 1)
@@ -150,29 +143,28 @@ window.onload = async () => {
         location.reload()
     })
     try{
-        if(city == null || city == "null" || lat == null || lat == "null" || lon == "null" || lon == null){
+        if(city === null || city === "null"){
             city = window.prompt("Enter your city: ")
-            localStorage.city = city
-
+            
             geoData = await(await fetch(GEO_API_URL(city))).json()
-            if(geoData.candidates.length == 0){
+            if(geoData[0] === undefined){
                 window.alert("Invalid city name.")
                 location.reload()
+            }else{
+                city = geoData[0].name
+                localStorage.city = city
+
+                lat = geoData[0].lat
+                localStorage.lat = lat
+                
+                lon = geoData[0].lon
+                localStorage.lon = lon
             }
-
-            lat = geoData.candidates[0].location.y
-            localStorage.lat = lat
-            
-            lon = geoData.candidates[0].location.x
-            localStorage.lon = lon
-
-            //console.log(geoData)
-            location.reload()
         }
         weatherData   = await(await fetch(WEATHER_API_URL)).json()
         pollutionData = await(await fetch(POLLUTION_API_URL)).json()
     }catch(err){console.error(err)}
-    
+    //console.log(geoData)
     //console.log(weatherData)
     //console.log(pollutionData)
 
