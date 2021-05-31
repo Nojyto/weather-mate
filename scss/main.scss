@@ -73,13 +73,13 @@ main {
             font-size: 14px;
         }
     }
-    #currentInfo{
+    #currentInfo, #additionalInfo{
         @extend .component;
         padding: 18px 34px;
         border-radius: 6px;
         font-size: 38px;
         width: 374px;
-        margin-top: 24px;
+        margin-top: 30px;
         text-align: center;
         div{
             width: 301px;
@@ -88,6 +88,7 @@ main {
         label{
             @extend .tooltip;
             float: left;
+            height: 58px;
             span{
                 @extend .tooltiptext;
             }
@@ -105,9 +106,14 @@ main {
                 text-align: right;
             }
         }
+        img{
+            height: 38px;
+            width: 38px;
+            margin: 10px 5px 10px 5px;
+        }
         .fa-tint   {
             color: #17E2F2;
-            padding:  0 11.25px 0 11.25px;
+            padding: 0 11.25px 0 11.25px;
         }
         .fa-sun      {
             color: #FDB813;
@@ -120,6 +126,14 @@ main {
         .fa-glasses  {
             color: $white;
             padding: 0 2.5px 0 2.5px;
+        }
+        .fa-car      {
+            color: #2976bb;
+            padding: 0 5px 0 5px;
+        }
+        .fa-running  {
+            color: #5BC236;
+            padding: 0 8.55556px 0 8.55556px;
         }
         .fa-arrow-up {color: $white;}
         .fa-smog     {color: $grey;}
@@ -138,7 +152,7 @@ main {
             justify-content: center;
             border-radius: 6px;
             background-color: $black;
-            margin-top: 24px;
+            margin-top: 30px;
             margin-bottom: 8px;
             margin-left: 18px;
             color: $white;
@@ -168,7 +182,7 @@ main {
         }
     }
     #dailyWeather{
-        margin-top: 24px;
+        margin-top: 30px;
         width: 374px;
         label{
             text-align: justify;
