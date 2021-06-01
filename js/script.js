@@ -225,6 +225,7 @@ window.onload = async () => {
             
             geoData = await(await fetch(GEO_API_URL(city))).json()
             if(geoData[0] === undefined){
+                city = null
                 window.alert("Invalid city name.")
             }else{
                 city = geoData[0].name
