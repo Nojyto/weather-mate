@@ -1,12 +1,12 @@
 let lat                 = localStorage.getItem("lat")
 let lon                 = localStorage.getItem("lon")
-let city                = localStorage.getItem("city");
+let city                = localStorage.getItem("city")
 
-const OPENWEATHER_API_KEY  = "7fd94e220617fedef7ce908432bba472"
-const WEATHER_API_URL   = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=metric&appid=${OPENWEATHER_API_KEY}`
-const POLLUTION_API_URL = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_API_KEY}`
+const WEATHER_API_KEY   = "7fd94e220617fedef7ce908432bba472"
+const WEATHER_API_URL   = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=metric&appid=${WEATHER_API_KEY}`
+const POLLUTION_API_URL = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`
 const WEATHER_ICON_URL  = (ico) => "https://openweathermap.org/img/wn/" + ico + ".png"
-const GEO_API_URL       = (query) => `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=1&appid=${OPENWEATHER_API_KEY}`
+const GEO_API_URL       = (query) => `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=1&appid=${WEATHER_API_KEY}`
 let geoData             = {}
 let pollutionData       = {}
 let weatherData         = {}
@@ -14,7 +14,7 @@ let weatherData         = {}
 function addCurrWeather(){
     const getCurDate = () => {
         const weekday = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur"]
-        const months  = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+        const months  = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
         const d = new Date()
         return `${weekday[d.getDay()]}, ${months[d.getMonth() + 1]} ${d.getDate()} ${d.getHours()}:${(d.getMinutes() < 10) ? "0" + d.getMinutes() : d.getMinutes()}`
     }
@@ -42,7 +42,7 @@ function addHourlyWeather(){
     d = new Date()
     if(d.getMinutes() > 40) d.setTime(d.getTime() + (60*60*1000))
     for(let i = 1; i <= 12; i++){
-        d.setHours(d.getHours() + 1);
+        d.setHours(d.getHours() + 1)
         hourlyWeather.innerHTML += `
             <div style="${(i == 1) ? "margin-left: 790px" : "margin-left: 18px"}">  
                 <label for="time">${d.getHours()}:00</label>
@@ -124,13 +124,18 @@ function addCurrInfo(){
         </div>
 
         <div>
+            <label for="cloudDensity"><i class="fas fa-cloud"></i><span>Cloud coverage</span></label>
+            <var>${weatherData.current.clouds}%</var>
+        </div>
+
+        <div>
             <label for="pollution"><i class="fas fa-smog"></i><span>AQI</span></label>
             <var>${getAQI(pollutionData.list[0].main.aqi)}</var>
         </div>
 
         <div>
             <label for="UV-index"><i class="fas fa-glasses"></i><span>UV index</span></label>
-            <var>${getUVindex(weatherData.current.uvi)}(${Math.ceil(weatherData.current.uvi)})</var>
+            <var>${getUVindex(weatherData.current.uvi)}</var>
         </div>
 
         <div>
