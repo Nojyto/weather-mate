@@ -1,7 +1,7 @@
 const WEATHER_API_KEY   = "7fd94e220617fedef7ce908432bba472"
 const WEATHER_API_URL   = (lat, lon) => `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=metric&appid=${WEATHER_API_KEY}`
 const POLLUTION_API_URL = (lat, lon) => `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`
-const GEO_API_URL       = (query)    => `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=1&appid=${WEATHER_API_KEY}`
+const GEO_API_URL       = (query)    => `https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=1&appid=${WEATHER_API_KEY}`
 const WEATHER_ICON_URL  = (ico)      => "https://openweathermap.org/img/wn/" + ico + ".png"
 
 function addCurrWeather(weatherData, city){
