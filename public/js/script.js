@@ -1,17 +1,10 @@
-let lat                 = localStorage.getItem("lat")
-let lon                 = localStorage.getItem("lon")
-let city                = localStorage.getItem("city")
-
 const WEATHER_API_KEY   = "7fd94e220617fedef7ce908432bba472"
-const WEATHER_API_URL   = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=metric&appid=${WEATHER_API_KEY}`
-const POLLUTION_API_URL = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`
-const WEATHER_ICON_URL  = (ico) => "https://openweathermap.org/img/wn/" + ico + ".png"
-const GEO_API_URL       = (query) => `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=1&appid=${WEATHER_API_KEY}`
-let geoData             = {}
-let pollutionData       = {}
-let weatherData         = {}
+const WEATHER_API_URL   = (lat, lon) => `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=metric&appid=${WEATHER_API_KEY}`
+const POLLUTION_API_URL = (lat, lon) => `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`
+const GEO_API_URL       = (query)    => `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=1&appid=${WEATHER_API_KEY}`
+const WEATHER_ICON_URL  = (ico)      => "https://openweathermap.org/img/wn/" + ico + ".png"
 
-function addCurrWeather(){
+function addCurrWeather(weatherData, city){
     const getCurDate = () => {
         const weekday = ["Sun", "Mon", "Tues", "Wednes", "Thurs", "Fri", "Satur"]
         const months  = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
@@ -37,7 +30,7 @@ function addCurrWeather(){
     `
 }
 
-function addHourlyWeather(){
+function addHourlyWeather(weatherData){
     hourlyWeather = document.getElementById("hourlyWeather")
     d = new Date()
     if(d.getMinutes() > 40) d.setTime(d.getTime() + (60*60*1000))
@@ -57,7 +50,7 @@ function addHourlyWeather(){
     }
 }
 
-function addCurrInfo(){
+function addCurrInfo(weatherData, pollutionData){
     const getAQI = (AQI) => {
         switch(AQI){
             case 5: return "Very Poor"
@@ -150,7 +143,7 @@ function addCurrInfo(){
     `
 }
 
-function addDailyWeather(){
+function addDailyWeather(weatherData){
     dailyWeather = document.getElementById("dailyWeather")
     let d = new Date() /*${(i == 1) ? "Tomorrow" : getCurWeekday(d.getDay() + i - 1)}*/
     d.setDate(d.getDate() + 1)
@@ -170,7 +163,7 @@ function addDailyWeather(){
     }
 }
 
-function addAdditionalInfo(){
+function addAdditionalInfo(weatherData){
     const drivingDifficulty = (diff) => {
         switch (diff){
             case 0:case 1:case 2:case 3: return "None"
@@ -218,6 +211,14 @@ window.onload = async () => {
         localStorage.lon  = null
         location.reload()
     })
+    let lat                 = localStorage.getItem("lat")
+    let lon                 = localStorage.getItem("lon")
+    let city                = localStorage.getItem("city")
+
+    let geoData             = {}
+    let pollutionData       = {}
+    let weatherData         = {}
+
     try{
         if(city === null || city === "null"){
             city = window.prompt("Enter your city: ")
@@ -237,16 +238,16 @@ window.onload = async () => {
             }
             location.reload()
         }
-        weatherData   = await(await fetch(WEATHER_API_URL)).json()
-        pollutionData = await(await fetch(POLLUTION_API_URL)).json()
+        weatherData   = await(await fetch(WEATHER_API_URL(lat, lon))).json()
+        pollutionData = await(await fetch(POLLUTION_API_URL(lat, lon))).json()
     }catch(err){console.error(err)}
     //console.log(geoData)
-    console.log(weatherData)
+    //console.log(weatherData)
     //console.log(pollutionData)
 
-    addCurrWeather()
-    addHourlyWeather()
-    addCurrInfo()
-    addDailyWeather()
-    addAdditionalInfo()
+    addCurrWeather(weatherData, city)
+    addHourlyWeather(weatherData)
+    addCurrInfo(weatherData, pollutionData)
+    addDailyWeather(weatherData)
+    addAdditionalInfo(weatherData)
 }
