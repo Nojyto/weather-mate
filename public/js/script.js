@@ -44,7 +44,7 @@ function addHourlyWeather(weatherData){
                     <span>${weatherData.hourly[i].weather[0].description.charAt(0).toUpperCase() + weatherData.hourly[i].weather[0].description.slice(1)}</span>
                 </samp>
                 <label for="temp">${Math.ceil(weatherData.hourly[i].feels_like)}°</label>
-                <label for="rain"><i class="fas fa-tint"></i>${parseInt(weatherData.hourly[i].pop * 100)}%</label>
+                <label for="rain"><i class="fas fa-tint"></i>${Math.ceil(weatherData.hourly[i].pop * 100)}%</label>
             </div>
         `
     }
