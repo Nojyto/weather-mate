@@ -84,7 +84,7 @@ function addCurrInfo(weatherData, pollutionData){
         const iconUrl = (moon) => `dependencies/moonPhases/${moon}.png`
         if     (phase <= 0.11) return iconUrl("newMoon")
         else if(phase <= 0.22) return iconUrl("waxingCrescent")
-        else if(phase <= 0.33) return iconUrl("quarterMoon")
+        else if(phase <= 0.33) return iconUrl("firstQuarter")
         else if(phase <= 0.44) return iconUrl("waxingGibbous")
         else if(phase <= 0.55) return iconUrl("fullMoon")
         else if(phase <= 0.66) return iconUrl("waningGibbous")
