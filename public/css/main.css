@@ -5,7 +5,6 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: "Titillium Web", sans-serif;
-  /*noselect*/
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -30,7 +29,7 @@
   border-radius: 6px;
 }
 
-.flexContainer, header, main, main #currentInfo label[for=feelsLikeTemp], main #additionalInfo label[for=feelsLikeTemp], main #hourlyWeather, main #hourlyWeather div, main #dailyWeather div, main #dailyWeather label[for=temp], main #dailyWeather label[for=rain], footer {
+.flexContainer, header, main, main #currentInfo div label, main #additionalInfo div label, main #currentInfo div label i, main #additionalInfo div label i, main #hourlyWeather, main #hourlyWeather div, main #dailyWeather div, main #dailyWeather div label[for=temp], main #dailyWeather div label[for=rain], footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -42,31 +41,22 @@
           align-items: center;
 }
 
-.headerfooter, header, footer {
-  width: 100%;
-  height: 64px;
-  background-color: #1B1B1B;
+.component, header, main #currentWeather, main #currentInfo, main #additionalInfo, main #hourlyWeather div, main #dailyWeather div, footer {
   -webkit-box-shadow: 0 0 15px #000000;
           box-shadow: 0 0 15px #000000;
-}
-
-.component, main #currentWeather, main #currentInfo, main #additionalInfo, main #hourlyWeather div, main #dailyWeather div {
-  -webkit-box-shadow: 0 0 15px #000000;
-          box-shadow: 0 0 15px #000000;
+  color: #F1F1F1;
   background-color: #1B1B1B;
 }
 
 a.button {
   display: inline-block;
+  color: #F1F1F1;
   padding: 0.35em 1.2em;
-  border: 0.1em solid #F1F1F1;
   margin: 8px 12.81px;
+  border: 0.1em solid #F1F1F1;
   border-radius: 0.12em;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   text-decoration: none;
   font-weight: 300;
-  color: #F1F1F1;
   text-align: center;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
@@ -77,12 +67,12 @@ a.button:hover {
   background-color: #F1F1F1;
 }
 
-.tooltip, main #currentInfo label, main #additionalInfo label, main #hourlyWeather samp, main #dailyWeather samp {
+.tooltip, main #currentInfo div label, main #additionalInfo div label, main #hourlyWeather div samp, main #dailyWeather div samp {
   position: relative;
   display: inline-block;
 }
 
-.tooltip .tooltiptext, main #currentInfo label .tooltiptext, main #additionalInfo label .tooltiptext, main #hourlyWeather samp .tooltiptext, main #dailyWeather samp .tooltiptext, main #currentInfo label span, main #additionalInfo label span, main #hourlyWeather samp span, main #dailyWeather samp span {
+.tooltip .tooltiptext, main #currentInfo div label .tooltiptext, main #additionalInfo div label .tooltiptext, main #hourlyWeather div samp .tooltiptext, main #dailyWeather div samp .tooltiptext, main #currentInfo div label span, main #additionalInfo div label span, main #hourlyWeather div samp span, main #dailyWeather div samp span {
   font-size: 14px;
   visibility: hidden;
   width: 100px;
@@ -101,7 +91,7 @@ a.button:hover {
   transition: opacity 0.3s;
 }
 
-.tooltip .tooltiptext::after, main #currentInfo label .tooltiptext::after, main #additionalInfo label .tooltiptext::after, main #hourlyWeather samp .tooltiptext::after, main #dailyWeather samp .tooltiptext::after, main #currentInfo label span::after, main #additionalInfo label span::after, main #hourlyWeather samp span::after, main #dailyWeather samp span::after {
+.tooltip .tooltiptext::after, main #currentInfo div label .tooltiptext::after, main #additionalInfo div label .tooltiptext::after, main #hourlyWeather div samp .tooltiptext::after, main #dailyWeather div samp .tooltiptext::after, main #currentInfo div label span::after, main #additionalInfo div label span::after, main #hourlyWeather div samp span::after, main #dailyWeather div samp span::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -112,7 +102,7 @@ a.button:hover {
   border-color: #F1F1F1 transparent transparent transparent;
 }
 
-.tooltip:hover .tooltiptext, main #currentInfo label:hover .tooltiptext, main #additionalInfo label:hover .tooltiptext, main #hourlyWeather samp:hover .tooltiptext, main #dailyWeather samp:hover .tooltiptext, .tooltip:hover main #currentInfo label span, main #currentInfo label .tooltip:hover span, main #currentInfo label:hover span, .tooltip:hover main #additionalInfo label span, main #additionalInfo label .tooltip:hover span, main #additionalInfo label:hover span, .tooltip:hover main #hourlyWeather samp span, main #hourlyWeather samp .tooltip:hover span, main #hourlyWeather samp:hover span, .tooltip:hover main #dailyWeather samp span, main #dailyWeather samp .tooltip:hover span, main #dailyWeather samp:hover span {
+.tooltip:hover .tooltiptext, main #currentInfo div label:hover .tooltiptext, main #additionalInfo div label:hover .tooltiptext, main #hourlyWeather div samp:hover .tooltiptext, main #dailyWeather div samp:hover .tooltiptext, .tooltip:hover main #currentInfo div label span, main #currentInfo div label .tooltip:hover span, main #currentInfo div label:hover span, .tooltip:hover main #additionalInfo div label span, main #additionalInfo div label .tooltip:hover span, main #additionalInfo div label:hover span, .tooltip:hover main #hourlyWeather div samp span, main #hourlyWeather div samp .tooltip:hover span, main #hourlyWeather div samp:hover span, .tooltip:hover main #dailyWeather div samp span, main #dailyWeather div samp .tooltip:hover span, main #dailyWeather div samp:hover span {
   visibility: visible;
   opacity: 1;
 }
@@ -173,6 +163,7 @@ a.button:hover {
 }
 
 html {
+  color: #F1F1F1;
   background-color: #292929;
   scroll-behavior: smooth;
 }
@@ -183,6 +174,8 @@ header {
           justify-content: left;
   opacity: 98.5%;
   top: 0;
+  width: 100%;
+  height: 64px;
   position: fixed;
   z-index: 100;
 }
@@ -190,27 +183,28 @@ header {
 header i {
   color: #F1F1F1;
   padding: 8px;
-  margin-left: 6px;
-  margin-right: 6px;
-  margin-top: 1px;
+  margin: 0 6px;
 }
 
 main {
-  width: 100%;
-  margin: 0 0 64px 0;
-  min-height: 800px;
-  color: #F1F1F1;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-flow: column wrap;
           flex-flow: column wrap;
+  margin: 96px 0 64px 0;
+  width: 100%;
+  min-height: 800px;
+  /*background-image: url("../public/dependencies/backgrounds/rainy.jpg");
+    background-repeat: no-repeat;*/
+}
+
+main section {
+  border-radius: 6px;
+  width: 374px;
 }
 
 main #currentWeather {
-  margin-top: 96px;
   padding: 18px 34px;
-  border-radius: 6px;
-  width: 374px;
   text-align: center;
 }
 
@@ -230,8 +224,6 @@ main #currentWeather p {
 }
 
 main #currentWeather img {
-  /*top: 2px;
-            right: 6px;*/
   width: 70px;
   height: 70px;
   float: left;
@@ -254,10 +246,8 @@ main #currentWeather span {
 
 main #currentInfo, main #additionalInfo {
   padding: 18px 34px;
-  border-radius: 6px;
-  font-size: 38px;
-  width: 374px;
   margin-top: 30px;
+  font-size: 38px;
   text-align: center;
 }
 
@@ -266,75 +256,63 @@ main #currentInfo div, main #additionalInfo div {
   height: 61px;
 }
 
-main #currentInfo label, main #additionalInfo label {
+main #currentInfo div label, main #additionalInfo div label {
   float: left;
-  height: 58px;
-}
-
-main #currentInfo var, main #additionalInfo var {
-  float: right;
   height: 100%;
+  width: 48px;
 }
 
-main #currentInfo label[for=feelsLikeTemp], main #additionalInfo label[for=feelsLikeTemp] {
-  float: left;
-  margin-right: 18px;
+main #currentInfo div label i, main #additionalInfo div label i {
+  height: 100%;
+  width: 100%;
 }
 
-main #currentInfo label[for=feelsLikeTemp] var, main #additionalInfo label[for=feelsLikeTemp] var {
-  width: 81px;
-  text-align: right;
+main #currentInfo div label .fa-tint, main #additionalInfo div label .fa-tint {
+  color: #17E2F2;
 }
 
-main #currentInfo img, main #additionalInfo img {
+main #currentInfo div label .fa-sun, main #additionalInfo div label .fa-sun {
+  color: #FDB813;
+}
+
+main #currentInfo div label .fa-wind, main #additionalInfo div label .fa-wind {
+  color: #BFBEB9;
+}
+
+main #currentInfo div label .fa-glasses, main #additionalInfo div label .fa-glasses {
+  color: #F1F1F1;
+}
+
+main #currentInfo div label .fa-car, main #additionalInfo div label .fa-car {
+  color: #2976bb;
+}
+
+main #currentInfo div label .fa-running, main #additionalInfo div label .fa-running {
+  color: #5BC236;
+}
+
+main #currentInfo div label .fa-arrow-up, main #additionalInfo div label .fa-arrow-up {
+  color: #F1F1F1;
+}
+
+main #currentInfo div label .fa-smog, main #additionalInfo div label .fa-smog {
+  color: #808080;
+}
+
+main #currentInfo div label .moonImg, main #additionalInfo div label .moonImg {
   height: 38px;
   width: 38px;
   margin: 10px 5px 10px 5px;
 }
 
-main #currentInfo .fa-tint, main #additionalInfo .fa-tint {
-  color: #17E2F2;
-  padding: 0 11.25px 0 11.25px;
-}
-
-main #currentInfo .fa-sun, main #additionalInfo .fa-sun {
-  color: #FDB813;
-  padding: 0 5px 0 5px;
-}
-
-main #currentInfo .fa-wind, main #additionalInfo .fa-wind {
-  color: #BFBEB9;
-  padding: 0 5px 0 5px;
-}
-
-main #currentInfo .fa-glasses, main #additionalInfo .fa-glasses {
-  color: #F1F1F1;
-  padding: 0 2.5px 0 2.5px;
-}
-
-main #currentInfo .fa-car, main #additionalInfo .fa-car {
-  color: #2976bb;
-  padding: 0 5px 0 5px;
-}
-
-main #currentInfo .fa-running, main #additionalInfo .fa-running {
-  color: #5BC236;
-  padding: 0 8.55556px 0 8.55556px;
-}
-
-main #currentInfo .fa-arrow-up, main #additionalInfo .fa-arrow-up {
-  color: #F1F1F1;
-}
-
-main #currentInfo .fa-smog, main #additionalInfo .fa-smog {
-  color: #808080;
+main #currentInfo div var, main #additionalInfo div var {
+  float: right;
+  height: 100%;
 }
 
 main #hourlyWeather {
   overflow: auto;
-  position: relative;
   white-space: nowrap;
-  width: 374px;
 }
 
 main #hourlyWeather div {
@@ -346,7 +324,6 @@ main #hourlyWeather div {
       -ms-flex-pack: center;
           justify-content: center;
   border-radius: 6px;
-  background-color: #1B1B1B;
   margin-top: 30px;
   margin-bottom: 8px;
   margin-left: 18px;
@@ -355,40 +332,33 @@ main #hourlyWeather div {
   height: 135px;
 }
 
-main #hourlyWeather .fa-tint {
-  color: #305EBE;
-  margin: 2px;
-}
-
-main #hourlyWeather label {
+main #hourlyWeather div label {
   width: 100%;
   text-align: center;
 }
 
-main #hourlyWeather label[for=rain] {
-  color: #808080;
+main #hourlyWeather div samp {
+  height: 50px;
 }
 
-main #hourlyWeather img {
+main #hourlyWeather div samp img {
   padding: 0 15px 0 15px;
 }
 
-main #hourlyWeather samp {
-  height: 50px;
+main #hourlyWeather div label[for=rain] {
+  color: #808080;
+}
+
+main #hourlyWeather div label[for=rain] .fa-tint {
+  color: #305EBE;
+  margin: 2px;
 }
 
 main #dailyWeather {
   margin-top: 30px;
-  width: 374px;
-}
-
-main #dailyWeather label {
-  text-align: justify;
-  position: relative;
 }
 
 main #dailyWeather div {
-  width: 374px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-flow: column wrap;
@@ -396,47 +366,55 @@ main #dailyWeather div {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  width: 374px;
+  height: 60px;
   margin-bottom: 17px;
   border-radius: 6px;
-  background-color: #1B1B1B;
-  height: 60px;
 }
 
-main #dailyWeather label[for=weekday] {
+main #dailyWeather div label[for=weekday] {
   float: left;
   width: 79px;
   font-size: 18px;
 }
 
-main #dailyWeather label[for=temp], main #dailyWeather label[for=rain] {
-  width: 80px;
-  height: 24px;
+main #dailyWeather div samp {
+  height: 60px;
 }
 
-main #dailyWeather label[for=rain] {
-  color: #808080;
-}
-
-main #dailyWeather img {
+main #dailyWeather div samp img {
   width: 60px;
   height: 60px;
 }
 
-main #dailyWeather .fa-tint {
+main #dailyWeather div label[for=temp], main #dailyWeather div label[for=rain] {
+  text-align: justify;
+  width: 80px;
+  height: 24px;
+}
+
+main #dailyWeather div label[for=rain] {
+  color: #808080;
+}
+
+main #dailyWeather div label[for=rain] .fa-tint {
   color: #305EBE;
   margin: 2px;
 }
 
-main #dailyWeather samp {
-  height: 60px;
-}
-
 footer {
   bottom: 0;
+  width: 100%;
+  height: 64px;
 }
 
 footer p {
   font-size: 16px;
-  color: #F1F1F1;
+}
+
+@media screen and (min-width: 1900px) {
+  /*main{
+        flex-flow: row wrap;
+    }*/
 }
 /*# sourceMappingURL=main.css.map */

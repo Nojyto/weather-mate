@@ -2,41 +2,47 @@
 @import "_utilities.scss";
 
 html {
+    color: $white;
     background-color: $darkgrey;
     scroll-behavior: smooth;
 }
 
 header {
     @extend .flexContainer;
+    @extend .component;
     justify-content: left;
-    @extend .headerfooter;
     opacity: 98.5%;
     top: 0;
+    width: 100%;
+    height: 64px;
     position: fixed;
     z-index: 100;
     i{
         color: $white;
         padding: 8px;
-        margin-left: 6px;
-        margin-right: 6px;
-        margin-top: 1px;
+        margin: 0 6px;
     }
 }
 
 main {
-    width: 100%;
-    margin: 0 0 64px 0;
-    min-height: 800px;
-    color: $white;
-
     @extend .flexContainer;
     flex-flow: column wrap;
-    #currentWeather{
-        @extend .component;
-        margin-top: 96px;
-        padding: 18px 34px;
+    margin: 96px 0 64px 0;
+    width: 100%;
+    min-height: 800px;
+    
+    /*background-image: url("../public/dependencies/backgrounds/rainy.jpg");
+    background-repeat: no-repeat;*/
+
+    section{
         border-radius: 6px;
         width: 374px;
+    }
+
+    #currentWeather{
+        @extend .component;
+        padding: 18px 34px;
+        
         text-align: center;
         h1{
             font-size: 45px;
@@ -52,9 +58,6 @@ main {
             color: $grey;
         }
         img{
-            //position: relative;
-            /*top: 2px;
-            right: 6px;*/
             width: 70px;
             height: 70px;
             float: left;
@@ -76,168 +79,147 @@ main {
     #currentInfo, #additionalInfo{
         @extend .component;
         padding: 18px 34px;
-        border-radius: 6px;
-        font-size: 38px;
-        width: 374px;
         margin-top: 30px;
+        font-size: 38px;
         text-align: center;
         div{
             width: 301px;
             height: 61px;
-        }
-        label{
-            @extend .tooltip;
-            float: left;
-            height: 58px;
-            span{
-                @extend .tooltiptext;
+            label{
+                @extend .tooltip;
+                @extend .flexContainer;
+                float: left;
+                height: 100%;
+                width: 48px;
+                i{
+                    @extend .flexContainer;
+                    height: 100%;
+                    width: 100%;
+                }
+                .fa-tint     {color: #17E2F2;}
+                .fa-sun      {color: #FDB813;}
+                .fa-wind     {color: #BFBEB9;}
+                .fa-glasses  {color: $white;}
+                .fa-car      {color: #2976bb;}
+                .fa-running  {color: #5BC236;}
+                .fa-arrow-up {color: $white;}
+                .fa-smog     {color: $grey;}
+                .moonImg{
+                    height: 38px;
+                    width: 38px;
+                    margin: 10px 5px 10px 5px;
+                }
+                span{
+                    @extend .tooltiptext;
+                }
             }
-        }
-        var{
-            float: right;
-            height: 100%;
-        }
-        label[for=feelsLikeTemp]{
-            @extend .flexContainer;
-            float: left;
-            margin-right: 18px;
             var{
-                width: 81px;
-                text-align: right;
+                float: right;
+                height: 100%;
             }
         }
-        img{
-            height: 38px;
-            width: 38px;
-            margin: 10px 5px 10px 5px;
-        }
-        .fa-tint   {
-            color: #17E2F2;
-            padding: 0 11.25px 0 11.25px;
-        }
-        .fa-sun      {
-            color: #FDB813;
-            padding: 0 5px 0 5px;
-        }
-        .fa-wind     {
-            color: #BFBEB9;
-            padding: 0 5px 0 5px;
-        }
-        .fa-glasses  {
-            color: $white;
-            padding: 0 2.5px 0 2.5px;
-        }
-        .fa-car      {
-            color: #2976bb;
-            padding: 0 5px 0 5px;
-        }
-        .fa-running  {
-            color: #5BC236;
-            padding: 0 8.55556px 0 8.55556px;
-        }
-        .fa-arrow-up {color: $white;}
-        .fa-smog     {color: $grey;}
     }
     #hourlyWeather{
         @extend .flexContainer;
 
         overflow: auto;
-        position: relative;
         white-space: nowrap;
-        width: 374px;
         div{
             @extend .component;
             @extend .flexContainer;
             flex-flow: column wrap;
             justify-content: center;
             border-radius: 6px;
-            background-color: $black;
             margin-top: 30px;
             margin-bottom: 8px;
             margin-left: 18px;
             color: $white;
             width: 80px;
             height: 135px;
-        }
-        .fa-tint{
-            color: #305EBE;
-            margin: 2px;
-        }
-        label{
-            width: 100%;
-            text-align: center;
-        }
-        label[for=rain]{
-            color: $grey;
-        }
-        img{
-            padding: 0 15px 0 15px;
-        }
-        samp{
-            height: 50px;
-            @extend .tooltip;
-            span{
-                @extend .tooltiptext;
+
+            label{
+                width: 100%;
+                text-align: center;
             }
-        }
+            samp{
+                @extend .tooltip;
+                height: 50px;
+                img{
+                    padding: 0 15px 0 15px;
+                }
+                span{
+                    @extend .tooltiptext;
+                }
+            }
+            label[for=rain]{
+                color: $grey;
+                .fa-tint{
+                    color: #305EBE;
+                    margin: 2px;
+                }
+            }
+        }    
     }
     #dailyWeather{
         margin-top: 30px;
-        width: 374px;
-        label{
-            text-align: justify;
-            position: relative;
-        }
         div{
-            width: 374px;
             @extend .component;
             @extend .flexContainer;
             flex-flow: column wrap;
             justify-content: center;
+            width: 374px;
+            height: 60px;
             margin-bottom: 17px;
             border-radius: 6px;
-            background-color: $black;
-            height: 60px;
-        }
-        label[for=weekday]{
-            float: left;
-            width: 79px;
-            font-size: 18px;
-            //margin: 16.5px 0px 16.5px 0px;
-        }
-        label[for=temp], label[for=rain]{
-            @extend .flexContainer;
-            width: 80px;
-            height: 24px;
-        }
-        label[for=rain]{
-            color: $grey;
-        }
-        img{
-            width: 60px;
-            height: 60px;
-            //margin: 0 30px 0 30px;
-        }
-        .fa-tint{
-            color: #305EBE;
-            margin: 2px;
-        }
-        samp{
-            height: 60px;
-            @extend .tooltip;
-            span{
-                @extend .tooltiptext;
+            label[for=weekday]{
+                float: left;
+                width: 79px;
+                font-size: 18px;
+            }
+
+            samp{
+                height: 60px;
+                @extend .tooltip;
+                img{
+                    width: 60px;
+                    height: 60px;
+                }
+                span{
+                    @extend .tooltiptext;
+                }
+            }
+
+            label[for=temp], label[for=rain]{
+                @extend .flexContainer;
+                text-align: justify;
+                width: 80px;
+                height: 24px;
+            }
+            label[for=rain]{
+                color: $grey;
+                .fa-tint{
+                    color: #305EBE;
+                    margin: 2px;
+                }
             }
         }
     }
 }
 
 footer {
-    @extend .headerfooter;
     @extend .flexContainer;
+    @extend .component;
     bottom: 0;
+    width: 100%;
+    height: 64px;
     p{
         font-size: 16px;
-        color: $white;
     }
+}
+
+@media screen and (min-width: 1900px) {
+
+    /*main{
+        flex-flow: row wrap;
+    }*/
 }

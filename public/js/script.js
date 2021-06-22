@@ -12,6 +12,8 @@ function addCurrWeather(weatherData, city){
         return `${weekday[d.getDay()]}, ${months[d.getMonth() + 1]} ${d.getDate()} ${d.getHours()}:${(d.getMinutes() < 10) ? "0" + d.getMinutes() : d.getMinutes()}`
     }
 
+    //document.getElementById("currentWeather").style.color = "blue"
+
     document.getElementById("currentWeather").innerHTML = `
         <div>
             <h1>${city}</h1>
@@ -37,7 +39,7 @@ function addHourlyWeather(weatherData){
     for(let i = 1; i <= 12; i++){
         d.setHours(d.getHours() + 1)
         hourlyWeather.innerHTML += `
-            <div style="${(i == 1) ? "margin-left: 790px" : "margin-left: 18px"}">  
+            <div${(i == 1) ? " style=\"margin-left: 790px\"" : ""}>  
                 <label for="time">${d.getHours()}:00</label>
                 <samp>
                     <img src=${WEATHER_ICON_URL(weatherData.hourly[i].weather[0].icon)} alt="weatherIcon" draggable="false"></img>
@@ -149,7 +151,7 @@ function addDailyWeather(weatherData){
     d.setDate(d.getDate() + 1)
     for(let i = 1; i <= 6; i++){
         dailyWeather.innerHTML += `
-            <div style="${(i == 6) ? "margin-bottom: 0px" : "margin-bottom: 17px"}">  
+            <div${(i == 6) ? " style=\"margin-bottom: 0px\"" : ""}>  
                 <label for="weekday">${(i == 1) ? "Tomorrow" : d.toLocaleString("EN", {weekday:"long"})}</label>
                 <samp>
                     <img src=${WEATHER_ICON_URL(weatherData.daily[i].weather[0].icon)} alt="weatherIcon" draggable="false"></img>

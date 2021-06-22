@@ -6,7 +6,6 @@
     box-sizing: border-box;
     font-family: "Titillium Web", sans-serif;
 
-    /*noselect*/
     -webkit-touch-callout: none;
       -webkit-user-select: none;
        -khtml-user-select: none;
@@ -21,8 +20,6 @@ $grey:      #808080;
 $darkgrey:  #292929;
 $black:     #1B1B1B;
 $fullblack: #000000;
-$red:       #FF2800;
-$yellow:    #FF9900;
 
 ::-webkit-scrollbar {
     width: 7px;
